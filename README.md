@@ -1,33 +1,32 @@
-# [motion sensor detector] — IoT DIY Project
+# Motion Sensor Detector
 
-![Platform](https://img.shields.io/badge/Platform-ESP32%20%7C%20Arduino-blue)
-![Language](https://img.shields.io/badge/Language-Embedded%20C%2FC%2B%2B-green)
+![Platform](https://img.shields.io/badge/Platform-Arduino%20Uno-00979D?logo=arduino&logoColor=white)
+![Sensor](https://img.shields.io/badge/Sensor-PIR%20HC--SR501-orange)
+![Language](https://img.shields.io/badge/Language-C%2FC%2B%2B-blue)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 
-A concise 1-2 line description of what this IoT project does, the problem it solves, and how it communicates (e.g., Wi-Fi, MQTT, Blynk, HTTP).
+A simple and reliable DIY motion detection system built using an **Arduino Uno** and a **PIR (Passive Infrared) Motion Sensor**. It detects human or animal movement in real time and outputs status signals via the Serial Monitor (or optional LEDs/buzzers).
 
 ---
 
-## Demo
-<!-- Replace with a real photo or GIF of your working setup -->
-![Project Demo](docs/demo.jpg)
+## Circuit Diagram & Demo
+<!-- Upload your wiring diagram image to the `docs/` folder in your GitHub repo as `demo.jpg` -->
+![Motion Sensor Detector Circuit](docs/demo.jpg)
 
 ---
 
 ## Features
-* **Real-time Monitoring:** Reads data from `[Sensor Name]` every `[X]` seconds.
-* **Remote Control / Alerts:** Sends updates to `[Cloud Platform / Mobile App]` via `[Wi-Fi / MQTT / HTTP]`.
-* **Fail-safe / Automation:** Automatically triggers `[Relay / Buzzer / LED]` when thresholds are crossed.
+* **Real-Time Motion Detection:** Uses a Passive Infrared (PIR) sensor to detect infrared radiation changes caused by movement.
+* **Plug-and-Play Wiring:** Requires only 3 jumper wires between the PIR sensor and Arduino Uno.
+* **Serial Monitoring:** Prints real-time motion status (`Motion Detected` / `No Motion`) to the Arduino Serial Monitor.
+* **Expandable Design:** Easily connect an LED, buzzer, relay, or Wi-Fi module (ESP8266/ESP32) for automated lighting or security alerts.
 
 ---
 
 ## System Architecture
 
 ```text
-[Sensors] ---> [Microcontroller (e.g., ESP32)] ---> [Wi-Fi / MQTT] ---> [Dashboard / App]
-                       |
-                       v
-              [Actuators (Relay/LED)]
+[PIR Motion Sensor (HC-SR501)] ---> [Arduino Uno (Digital Pin 4)] ---> [Serial Monitor / Output Alert]
 ```
 
 ---
@@ -35,51 +34,50 @@ A concise 1-2 line description of what this IoT project does, the problem it sol
 ## Hardware Requirements
 | Component | Specification / Model | Quantity |
 | :--- | :--- | :---: |
-| Microcontroller | `[e.g., ESP32 DevKit V1 / NodeMCU]` | 1 |
-| Sensor | `[e.g., DHT11 / Ultrasonic HC-SR04]` | 1 |
-| Actuator | `[e.g., 5V Single Channel Relay]` | 1 |
-| Power Supply | `[e.g., 5V 2A USB Adapter]` | 1 |
+| Microcontroller | Arduino Uno (R3) | 1 |
+| Motion Sensor | PIR Motion Sensor (HC-SR501) | 1 |
+| Jumper Wires | Male-to-Female | 3 |
+| Power / Data Cable | USB Type-A to Type-B Cable | 1 |
 
 ---
 
 ## Pinout / Wiring
-| Component Pin | Microcontroller Pin | Notes |
-| :--- | :--- | :--- |
-| `VCC` | `3.3V / 5V` | Power |
-| `GND` | `GND` | Common Ground |
-| `[Sensor Signal]` | `[e.g., GPIO 4]` | Data |
-| `[Relay IN]` | `[e.g., GPIO 5]` | Output |
+| PIR Sensor Pin | Arduino Uno Pin | Wire Color | Function |
+| :--- | :--- | :--- | :--- |
+| `1 - GND` | `GND` | Black | Ground |
+| `2 - Output` | `Digital Pin 4` | Green | Digital Signal Input |
+| `3 - VCC` | `5V` | Red | Power Supply |
 
 ---
 
 ## Quick Start
 
 ### 1. Prerequisites
-* **IDE:** Arduino IDE / PlatformIO
-* **Libraries:** `[e.g., WiFi.h, PubSubClient, DHT sensor library]`
+* **IDE:** [Arduino IDE](https://www.arduino.cc/en/software)
+* **Libraries:** No external libraries required (uses built-in Arduino functions).
 
-### 2. Configuration
-1. Clone the repository:
+### 2. Setup & Wiring
+1. Clone this repository:
    ```bash
    git clone https://github.com/Shanmugash24/IOT_DIY-project.git
    ```
-2. Open `src/config.example.h`, rename it to `config.h`, and add your credentials:
-   ```cpp
-   #define WIFI_SSID "YOUR_WIFI_NAME"
-   #define WIFI_PASS "YOUR_WIFI_PASSWORD"
-   #define API_KEY   "YOUR_API_KEY"
-   ```
+2. Wire the PIR sensor to the Arduino Uno following the **Pinout / Wiring** table and diagram above.
 
 ### 3. Flash & Run
-1. Connect the board via USB and select the correct **Board** and **Port**.
-2. Upload the code and open Serial Monitor at `115200` baud to verify connection.
+1. Open the `.ino` sketch in the Arduino IDE.
+2. Connect the Arduino Uno to your PC via USB.
+3. Go to **Tools > Board** and select **Arduino Uno**, then select the correct **Port**.
+4. Click **Upload**.
+5. Open the **Serial Monitor** (`Ctrl + Shift + M`) and set the baud rate to `9600` (or match your code's `Serial.begin()` rate).
+6. Allow 30–60 seconds for the PIR sensor to calibrate, then wave your hand in front of the sensor to test.
 
 ---
 
 ## Future Improvements
-* [ ] Add OTA (Over-The-Air) firmware updates.
-* [ ] Design a custom PCB enclosure.
-* [ ] Implement deep-sleep mode for battery optimization.
+* [ ] Add an LED and piezo buzzer for instant visual and audio alerts.
+* [ ] Integrate an ESP8266/ESP32 module to send mobile push notifications (Blynk / Telegram / MQTT).
+* [ ] Connect a 5V relay module to automate room lighting on motion detection.
+* [ ] Add a 3D-printed enclosure for wall mounting.
 
 ---
 
