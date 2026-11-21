@@ -10,8 +10,7 @@ A simple and reliable DIY motion detection system built using an **Arduino Uno**
 ---
 
 ## Circuit Diagram & Demo
-<!-- Upload your wiring diagram image to the `docs/` folder in your GitHub repo as `demo.jpg` -->
-![Motion Sensor Detector Circuit](docs/demo.jpg)
+![Motion Sensor Detector Circuit](https://github.com/Shanmugash24/IOT_DIY-project/blob/main/connection/WhatsApp%20Image%202025-08-09%20at%2010.06.20_64feddcc.jpg?raw=true)
 
 ---
 
